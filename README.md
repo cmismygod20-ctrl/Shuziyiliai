@@ -1,457 +1,450 @@
-
-
-```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>医疗器械工厂风险预测工具 | 의료기기 공장 위험 예측 도구</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>医疗器械产业安全指南 | 의료기기 산업 안전 가이드 - 中韩对照</title>
+    <!-- Font Awesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            background: #eef2f5;
-            font-family: 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
-            padding: 1.5rem;
-            color: #1e2f3e;
+            background: #f4f7fc;
+            font-family: 'Segoe UI', Roboto, 'Noto Sans KR', 'Malgun Gothic', system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            color: #1a2c3e;
+            padding: 2rem 1rem;
         }
+
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
         }
-        h1 {
+
+        /* 头部区域 */
+        .header {
             text-align: center;
-            font-size: 1.9rem;
-            margin-bottom: 0.25rem;
-            color: #0a4b6e;
+            margin-bottom: 3rem;
         }
-        .sub {
-            text-align: center;
-            margin-bottom: 2rem;
+
+        .header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #0b5e7e, #1b7e5c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.3px;
+        }
+
+        .header .sub {
+            font-size: 1.1rem;
             color: #2c6e9e;
             font-weight: 500;
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
+            margin-top: 0.5rem;
         }
-        .lang-switch {
-            text-align: right;
-            margin-bottom: 1rem;
-        }
-        .lang-btn {
-            background: white;
-            border: 1px solid #bdd4e0;
-            padding: 0.3rem 1rem;
+
+        .header .sub span {
+            background: #eef2f5;
+            padding: 0.2rem 1rem;
             border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 0 0.2rem;
-            transition: 0.2s;
-        }
-        .lang-btn.active {
-            background: #0a4b6e;
-            color: white;
-            border-color: #0a4b6e;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 1.8rem;
-            margin-top: 1rem;
-        }
-        .risk-card {
-            background: white;
-            border-radius: 28px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            overflow: hidden;
-            transition: transform 0.1s ease;
-            border-top: 6px solid;
-        }
-        .card-header {
-            padding: 1rem 1.5rem 0.5rem;
-            background: #fafdff;
-        }
-        .card-header h2 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.6rem;
-        }
-        .card-header p {
-            color: #4f6f8a;
-            margin-top: 5px;
-            font-size: 0.85rem;
-        }
-        .params {
-            padding: 1rem 1.5rem;
-            background: #f9fbfd;
-            border-bottom: 1px solid #e2edf2;
-        }
-        .param-row {
-            margin-bottom: 1.2rem;
-        }
-        .param-row label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-        }
-        select, input[type="range"] {
-            width: 100%;
-            padding: 8px 10px;
-            border-radius: 16px;
-            border: 1px solid #cbdbe0;
-            background: white;
             font-size: 0.9rem;
         }
-        .range-value {
+
+        .badge {
+            background: #d9eaf3;
             display: inline-block;
-            background: #e9f0f5;
-            padding: 2px 8px;
+            padding: 0.2rem 0.9rem;
             border-radius: 20px;
             font-size: 0.8rem;
-            margin-left: 8px;
+            margin-bottom: 1rem;
         }
-        .predict-btn {
-            background: #1f7a5a;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
+
+        /* 场景卡片 */
+        .scene-card {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            border: 1px solid #e2edf2;
+        }
+
+        .scene-header {
+            padding: 1.5rem 2rem 0.8rem 2rem;
+            background: #ffffff;
+            border-bottom: 3px solid;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .scene-icon {
+            font-size: 2.2rem;
+            background: #eef3fa;
+            width: 55px;
+            height: 55px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+        }
+
+        .scene-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .scene-title small {
             font-size: 1rem;
-            font-weight: bold;
-            border-radius: 40px;
-            margin: 0.5rem 0 1rem 0;
-            cursor: pointer;
-            transition: 0.2s;
+            font-weight: 400;
+            color: #4a627a;
+            margin-left: 10px;
         }
-        .predict-btn:hover {
-            background: #0e5e44;
+
+        .scene-desc {
+            padding: 1.2rem 2rem;
+            background: #f9fdfe;
+            border-bottom: 1px solid #e0edf2;
         }
-        .result-area {
-            padding: 1rem 1.5rem 1.5rem;
-            border-top: 1px solid #e2edf2;
+
+        .risk-double {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .risk-box {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 0.8rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            border-left: 5px solid #cbdde6;
+        }
+
+        .risk-box .lang-label {
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #3c7a9e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .risk-box p {
+            font-size: 0.95rem;
+            color: #1f3b4a;
+        }
+
+        /* 表格区域 (SOP) */
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1rem 0 1rem 0;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 0 2rem 1.5rem 2rem;
+            border-radius: 20px;
+            border: 1px solid #e2edf2;
             background: white;
         }
-        .risk-level {
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 24px;
-            text-align: center;
-            margin-bottom: 12px;
-        }
-        .risk-high { background: #fce4e4; color: #b91c1c; }
-        .risk-medium { background: #fff0db; color: #b45f06; }
-        .risk-low { background: #e0f2e9; color: #156f39; }
-        .advice {
+
+        .sop-table {
+            width: 100%;
+            border-collapse: collapse;
             font-size: 0.9rem;
-            background: #f0f6fa;
-            padding: 10px 14px;
+            min-width: 500px;
+        }
+
+        .sop-table th {
+            background: #eef3f9;
+            padding: 12px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #1f5e7a;
+            border-bottom: 1px solid #cfdfe8;
+        }
+
+        .sop-table td {
+            padding: 12px 12px;
+            border-bottom: 1px solid #e9f0f3;
+            vertical-align: top;
+        }
+
+        .sop-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .step-num {
+            font-weight: 700;
+            color: #0f6b8c;
+            width: 60px;
+        }
+
+        /* 应急措施 左右对照 */
+        .emergency-section {
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .emer-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 1rem 0 0.8rem 0;
+            color: #bc4e2c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .emer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            background: #fefaf5;
+            padding: 1.2rem 1.5rem;
+            border-radius: 24px;
+            border: 1px solid #f0e2d4;
+        }
+
+        .emer-col {
+            background: white;
             border-radius: 20px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .emer-col h4 {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            border-left: 4px solid #bc4e2c;
+            padding-left: 10px;
+        }
+
+        .emer-col ul {
+            padding-left: 1.2rem;
+        }
+
+        .emer-col li {
+            margin-bottom: 8px;
             line-height: 1.4;
         }
-        hr {
-            margin: 15px 0;
-        }
+
+        /* 脚注 */
         .footer {
             text-align: center;
-            margin-top: 2.5rem;
-            font-size: 0.75rem;
-            color: #6a8aaa;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: #5e7e97;
+            border-top: 1px solid #cfe1e9;
         }
-        @media (max-width: 700px) {
-            body { padding: 0.8rem; }
+
+        /* 响应式 */
+        @media (max-width: 780px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .scene-header {
+                padding: 1rem 1.2rem;
+            }
+            .scene-title {
+                font-size: 1.4rem;
+            }
+            .scene-desc, .section-title, .table-wrapper, .emergency-section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .table-wrapper {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            .emer-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .risk-double {
+                flex-direction: column;
+            }
         }
-        .ko-text {
-            font-weight: 400;
+
+        /* 辐射边框颜色 */
+        .scene-card[data-scene="radiation"] .scene-header {
+            border-bottom-color: #e7a614;
+        }
+        .scene-card[data-scene="bio"] .scene-header {
+            border-bottom-color: #2c8c5a;
+        }
+        .scene-card[data-scene="lift"] .scene-header {
+            border-bottom-color: #3a7ca5;
+        }
+
+        i.icon-margin {
+            margin-right: 6px;
+        }
+        .kt-text {
+            font-weight: 500;
+            letter-spacing: 0.2px;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="lang-switch">
-        <button class="lang-btn active" data-lang="zh">中文</button>
-        <button class="lang-btn" data-lang="ko">한국어</button>
-    </div>
-    <h1><span class="lang-zh">🏭 医疗器械产业安全风险预测工具</span><span class="lang-ko" style="display:none;">🏭 의료기기 산업 안전 위험 예측 도구</span></h1>
-    <div class="sub">
-        <span class="lang-zh">输入参数 → 实时评估风险等级 + 改善建议</span>
-        <span class="lang-ko" style="display:none;">파라미터 입력 → 실시간 위험 평가 및 개선 권고</span>
+    <div class="header">
+        <div class="badge"><i class="fas fa-industry"></i> 医疗器械产业工厂 · 의료기기 산업 공장</div>
+        <h1>⚕️ 产业安全风险场景指南 <span style="font-size: 1.8rem;">&</span> 📘 산업 안전 위험 시나리오</h1>
+        <div class="sub">
+            <span><i class="fas fa-language"></i> 中韩对照 · 중한 대조</span>
+            <span><i class="fas fa-hard-hat"></i> SOP + 비상 조치</span>
+        </div>
+        <p style="margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto; color: #3f6b85;">辐射防护 · 生物安全 · 重物搬运 | 操作流程及应急措施即时对照，保障工厂一线作业安全</p>
     </div>
 
-    <div class="card-grid">
-        <!-- 辐射防护卡片 -->
-        <div class="risk-card" style="border-top-color: #e7a614;">
-            <div class="card-header">
-                <h2>☢️ <span class="lang-zh">辐射防护</span><span class="lang-ko" style="display:none;">방사선 방호</span></h2>
-                <p class="lang-zh">X射线/伽马射线设备 · 작업장 방사선 위험 평가</p>
-                <p class="lang-ko" style="display:none;">X-선/감마선 장비 · 방사선 위험 평가</p>
-            </div>
-            <div class="params">
-                <div class="param-row">
-                    <label class="lang-zh">📊 辐射剂量率 (µSv/h)  <span id="doseVal" class="range-value">0.5</span></label>
-                    <label class="lang-ko" style="display:none;">📊 선량률 (µSv/h) <span id="doseVal_ko" class="range-value">0.5</span></label>
-                    <input type="range" id="doseRate" min="0" max="10" step="0.1" value="0.5">
-                </div>
-                <div class="param-row">
-                    <label class="lang-zh">🛡️ 个人防护等级</label>
-                    <label class="lang-ko" style="display:none;">🛡️ 개인 보호 수준</label>
-                    <select id="radiationPPE">
-                        <option value="3" class="lang-zh">完整 (铅衣+剂量计+警报器)</option>
-                        <option value="2" class="lang-zh">基本 (仅铅衣+剂量计)</option>
-                        <option value="1" class="lang-zh">不足 (无铅衣或剂量计缺失)</option>
-                        <option value="3" class="lang-ko" style="display:none;">완벽 (납 보호복+선량계+경보기)</option>
-                        <option value="2" class="lang-ko" style="display:none;">기본 (납 보호복+선량계만)</option>
-                        <option value="1" class="lang-ko" style="display:none;">부족 (납 보호복 또는 선량계 없음)</option>
-                    </select>
-                </div>
-                <div class="param-row">
-                    <label class="lang-zh">🔧 联锁装置/屏蔽完整性</label>
-                    <label class="lang-ko" style="display:none;">🔧 인터록 장치/차폐 무결성</label>
-                    <select id="radiationShield">
-                        <option value="3" class="lang-zh">良好 (定期检测, 功能正常)</option>
-                        <option value="2" class="lang-zh">部分有效 (部分区域屏蔽老化)</option>
-                        <option value="1" class="lang-zh">失效或缺失 (无联锁或屏蔽损坏)</option>
-                        <option value="3" class="lang-ko" style="display:none;">우수 (정기 검사, 정상 작동)</option>
-                        <option value="2" class="lang-ko" style="display:none;">부분 유효 (일부 차폐 노후화)</option>
-                        <option value="1" class="lang-ko" style="display:none;">실패 또는 누락 (인터록 없음/차폐 손상)</option>
-                    </select>
-                </div>
-            </div>
-            <button class="predict-btn" data-scene="radiation"><span class="lang-zh">🔮 预测风险</span><span class="lang-ko" style="display:none;">🔮 위험 예측</span></button>
-            <div class="result-area" id="resultRadiation">
-                <div class="risk-level risk-low" id="radLevelText"><span class="lang-zh">⚡ 等待评估</span><span class="lang-ko" style="display:none;">⚡ 평가 대기 중</span></div>
-                <div class="advice" id="radAdvice"><span class="lang-zh">点击上方按钮，输入参数后获得风险评级与建议</span><span class="lang-ko" style="display:none;">위 버튼을 눌러 매개변수를 입력하면 위험 등급과 권고사항을 받을 수 있습니다.</span></div>
+    <!-- 场景1: 辐射防护 -->
+    <div class="scene-card" data-scene="radiation">
+        <div class="scene-header">
+            <div class="scene-icon"><i class="fas fa-radiation" style="color:#e7a614;"></i></div>
+            <div class="scene-title">辐射防护 <small>방사선 방호</small></div>
+        </div>
+        <div class="scene-desc">
+            <div class="risk-double">
+                <div class="risk-box"><div class="lang-label"><i class="fas fa-flag-china"></i> 中文风险描述</div><p>在医疗器械工厂中，涉及X射线检测设备、医用直线加速器、伽马射线灭菌装置等，可能产生电离辐射。长期或高剂量暴露会导致组织损伤、癌症风险增加。必须严格遵循防护流程。</p></div>
+                <div class="risk-box"><div class="lang-label"><i class="fas fa-flag-south-korea"></i> 한국어 위험 설명</div><p>의료기기 공장에서 X-ray 검사 장비, 의료용 선형가속기, 감마선 멸균 장치 등이 사용될 경우 전리 방사선이 발생할 수 있습니다. 장기간 또는 고용량 노출은 조직 손상 및 암 발생 위험을 높입니다. 방호 절차를 엄격히 따라야 합니다.</p></div>
             </div>
         </div>
 
-        <!-- 生物安全卡片 -->
-        <div class="risk-card" style="border-top-color: #2c8c5a;">
-            <div class="card-header">
-                <h2>🧫 <span class="lang-zh">生物安全</span><span class="lang-ko" style="display:none;">생물안전</span></h2>
-                <p class="lang-zh">病原体/人体组织样本 · 병원체/인체조직 위험</p>
-                <p class="lang-ko" style="display:none;">병원체/인체 조직 위험</p>
-            </div>
-            <div class="params">
-                <div class="param-row">
-                    <label class="lang-zh">🦠 生物危害等级 (BSL)</label>
-                    <label class="lang-ko" style="display:none;">🦠 생물학적 위험 등급 (BSL)</label>
-                    <select id="bioLevel">
-                        <option value="1">BSL-1 (低风险微生物)</option>
-                        <option value="2">BSL-2 (中等风险，如乙肝病毒)</option>
-                        <option value="3">BSL-3 (高风险气溶胶传播)</option>
-                    </select>
-                </div>
-                <div class="param-row">
-                    <label class="lang-zh">🧤 生物安全柜使用 & PPE</label>
-                    <label class="lang-ko" style="display:none;">🧤 생물안전작업대 사용 및 PPE</label>
-                    <select id="bioPPE">
-                        <option value="3">II级BSC + 全面防护 (N95+双层手套+护目镜)</option>
-                        <option value="2">仅BSC或仅基本PPE (口罩+单层手套)</option>
-                        <option value="1">无BSC或无适当PPE</option>
-                    </select>
-                </div>
-                <div class="param-row">
-                    <label class="lang-zh">🧪 废弃物处理规范</label>
-                    <label class="lang-ko" style="display:none;">🧪 폐기물 처리 규정</label>
-                    <select id="bioWaste">
-                        <option value="3">立即高压灭菌+专用容器</option>
-                        <option value="2">普通密封丢弃 (无灭菌)</option>
-                        <option value="1">随意丢弃 / 无管理</option>
-                    </select>
-                </div>
-            </div>
-            <button class="predict-btn" data-scene="bio"><span class="lang-zh">🔮 预测风险</span><span class="lang-ko" style="display:none;">🔮 위험 예측</span></button>
-            <div class="result-area" id="resultBio">
-                <div class="risk-level risk-low"><span class="lang-zh">等待评估</span><span class="lang-ko" style="display:none;">평가 대기 중</span></div>
-                <div class="advice"><span class="lang-zh">点击按钮，输入参数后获得生物安全风险评级</span><span class="lang-ko" style="display:none;">버튼을 클릭하여 생물안전 위험 평가를 받으세요.</span></div>
-            </div>
+        <div class="section-title"><i class="fas fa-clipboard-list"></i> 标准操作流程 (SOP) · 표준 작업 절차</div>
+        <div class="table-wrapper">
+            <table class="sop-table">
+                <thead>
+                    <tr><th>단계 / 步骤</th><th>중국어 작업 지침 (中文)</th><th>한국어 작업 지침 (韓文)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="step-num">1</td><td>进入辐射控制区前，佩戴个人剂量计和辐射警报器。</td><td>방사선 관리 구역에 들어가기 전에 개인 선량계와 방사선 경보기를 착용하십시오.</td></tr>
+                    <tr><td class="step-num">2</td><td>确认设备联锁装置、警示灯及屏蔽门正常工作。</td><td>장비 인터록 장치, 경고등 및 차폐문이 정상 작동하는지 확인하십시오.</td></tr>
+                    <tr><td class="step-num">3</td><td>操作时站在铅屏蔽屏后，并使用远程操控工具。</td><td>작업 시 납 차폐 스크린 뒤에 서서 원격 조작 도구를 사용하십시오.</td></tr>
+                    <tr><td class="step-num">4</td><td>每两小时记录一次累计剂量值，若接近限值立即停止工作。</td><td>2시간마다 누적 선량 값을 기록하고, 한도에 근접하면 즉시 작업을 중단하십시오.</td></tr>
+                    <tr><td class="step-num">5</td><td>工作结束后按指定路线退出，脱下防护服并单独存放于铅柜。</td><td>작업 종료 후 지정된 경로로 퇴실하고 보호복을 벗어 납 캐비닛에 별도 보관하십시오.</td></tr>
+                </tbody>
+            </table>
         </div>
 
-        <!-- 重物搬运卡片 -->
-        <div class="risk-card" style="border-top-color: #3a7ca5;">
-            <div class="card-header">
-                <h2>🏋️ <span class="lang-zh">重物搬运</span><span class="lang-ko" style="display:none;">중량물 취급</span></h2>
-                <p class="lang-zh">机械辅助 / 人工搬运 위험 평가</p>
-                <p class="lang-ko" style="display:none;">기계 보조 / 수동 취급 위험 평가</p>
-            </div>
-            <div class="params">
-                <div class="param-row">
-                    <label class="lang-zh">📦 单次搬运重量 (kg)</label>
-                    <label class="lang-ko" style="display:none;">📦 1회 취급 중량 (kg)</label>
-                    <input type="range" id="weightKg" min="0" max="80" step="1" value="20">
-                    <span id="weightVal" class="range-value">20 kg</span>
-                </div>
-                <div class="param-row">
-                    <label class="lang-zh">🤝 辅助设备使用</label>
-                    <label class="lang-ko" style="display:none;">🤝 보조 장비 사용</label>
-                    <select id="liftingAid">
-                        <option value="3">液压车/叉车/升降平台 (完全机械)</option>
-                        <option value="2">手推车/半辅助 (部分人工)</option>
-                        <option value="1">纯人力搬运 / 无辅助</option>
-                    </select>
-                </div>
-                <div class="param-row">
-                    <label class="lang-zh">🧍 人员培训与工效学</label>
-                    <label class="lang-ko" style="display:none;">🧍 직원 교육 및 인간공학</label>
-                    <select id="liftTraining">
-                        <option value="3">定期培训 + 规范姿势 + 双人协作制度</option>
-                        <option value="2">仅基本指导 / 偶尔提醒</option>
-                        <option value="1">无培训或习惯不良</option>
-                    </select>
-                </div>
-            </div>
-            <button class="predict-btn" data-scene="lift"><span class="lang-zh">🔮 预测风险</span><span class="lang-ko" style="display:none;">🔮 위험 예측</span></button>
-            <div class="result-area" id="ResultLift">
-                <div class="risk-level risk-low"><span class="lang-zh">等待评估</span><span class="lang-ko" style="display:none;">평가 대기 중</span></div>
-                <div class="advice"><span class="lang-zh">点击按钮评估重物搬运风险</span><span class="lang-ko" style="display:none;">버튼을 눌러 중량물 취급 위험을 평가하세요.</span></div>
+        <div class="emergency-section">
+            <div class="emer-title"><i class="fas fa-truck-medical"></i> 应急措施 · 비상 조치</div>
+            <div class="emer-grid">
+                <div class="emer-col"><h4><i class="fas fa-exclamation-triangle"></i> 中文应急措施</h4><ul><li>立即按下紧急停止按钮，封锁辐射区域，禁止人员进入。</li><li>所有人员迅速沿撤离通道离开，到指定集合点清点人数。</li><li>立即报告安全负责人并启动应急预案，通知专业辐射应急小组。</li><li>受照人员不得自行离开，等候专业去污和紧急医学检查。</li></ul></div>
+                <div class="emer-col"><h4><i class="fas fa-exclamation-triangle"></i> 한국어 비상 조치</h4><ul><li>즉시 비상 정지 버튼을 누르고 방사선 구역을 봉쇄하십시오.</li><li>모든 인원은 신속하게 대피 통로를 따라 지정 집결지로 이동하십시오.</li><li>안전 책임자에게 보고하고 비상 대응 계획을 가동하며 전문 방사선 대응팀에 연락하십시오.</li><li>피폭자는 스스로 이동하지 말고 전문 제독 및 응급 건강 검진을 기다리십시오.</li></ul></div>
             </div>
         </div>
     </div>
+
+    <!-- 场景2: 生物安全 -->
+    <div class="scene-card" data-scene="bio">
+        <div class="scene-header">
+            <div class="scene-icon"><i class="fas fa-biohazard" style="color:#2c8c5a;"></i></div>
+            <div class="scene-title">生物安全 <small>생물학적 안전</small></div>
+        </div>
+        <div class="scene-desc">
+            <div class="risk-double">
+                <div class="risk-box"><div class="lang-label"><i class="fas fa-flag-china"></i> 中文风险描述</div><p>医疗器械工厂可能接触病原体、人体组织样本、生物指示剂及污染性医疗器械。暴露可导致感染、过敏或职业性传播疾病。必须加强二级生物安全防护。</p></div>
+                <div class="risk-box"><div class="lang-label"><i class="fas fa-flag-south-korea"></i> 한국어 위험 설명</div><p>의료기기 공장에서는 병원체, 인체 조직 샘플, 생물학적 지시약 및 오염된 의료기기에 노출될 수 있습니다. 노출 시 감염, 알레르기 또는 직업성 전염병을 유발할 수 있으므로 2등급 생물안전 보호를 강화해야 합니다.</p></div>
+            </div>
+        </div>
+
+        <div class="section-title"><i class="fas fa-clipboard-list"></i> 标准操作流程 (SOP) · 표준 작업 절차</div>
+        <div class="table-wrapper">
+            <table class="sop-table">
+                <thead><tr><th>步骤 / 단계</th><th>中文操作</th><th>한국어 작업 지침</th></tr></thead>
+                <tbody>
+                    <tr><td class="step-num">1</td><td>进入生物安全区前，穿戴二级生物安全柜配套 PPE：隔离衣、双层手套、护目镜及N95口罩。</td><td>생물안전 구역에 들어가기 전에 2등급 생물안전작업대에 맞는 개인보호구(격리복, 이중 장갑, 보안경, N95 마스크)를 착용하십시오.</td></tr>
+                    <tr><td class="step-num">2</td><td>所有操作必须在二级生物安全柜 (BSC) 内进行，禁止在开放台面处理生物危险物。</td><td>모든 작업은 반드시 2등급 생물안전작업대(BSC) 내에서 수행해야 하며, 개방형 작업대에서 생물학적 위험물을 취급하지 마십시오.</td></tr>
+                    <tr><td class="step-num">3</td><td>工作结束后，使用有效消毒剂（0.5%次氯酸钠）擦拭台面及器械表面。</td><td>작업 종료 후 유효한 소독제(0.5% 차아염소산나트륨)로 작업대 및 기기 표면을 닦으십시오.</td></tr>
+                    <tr><td class="step-num">4</td><td>所有污染性耗材及锐器放入专用生物危害垃圾袋/锐器盒，密封后高压灭菌。</td><td>모든 오염된 소모품 및 날카로운 도구는 전용 생물학적 위험 폐기물 봉투/날카로운 도구 용기에 넣고 밀봉한 후 고압멸균하십시오.</td></tr>
+                    <tr><td class="step-num">5</td><td>完成操作后按顺序脱下防护用品，并进行手部消毒（七步洗手法）。</td><td>작업 완료 후 순서에 따라 보호구를 벗고 손 소독(7단계 세척법)을 시행하십시오.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="emergency-section">
+            <div class="emer-title"><i class="fas fa-truck-medical"></i> 应急措施 · 비상 조치</div>
+            <div class="emer-grid">
+                <div class="emer-col"><h4><i class="fas fa-ambulance"></i> 中文应急措施</h4><ul><li>皮肤意外接触血液/体液：立即用大量肥皂水冲洗至少15分钟。</li><li>粘膜或针刺伤暴露：挤压伤口并冲洗，立即报告安全主管，进行暴露后预防评估。</li><li>生物危险物质泄漏：疏散区域，封闭泄漏区，使用吸收材料覆盖，再消毒处理。</li><li>所有暴露事件需登记并追踪至少6个月健康状态。</li></ul></div>
+                <div class="emer-col"><h4><i class="fas fa-ambulance"></i> 한국어 비상 조치</h4><ul><li>피부에 혈액/체액 우발적 접촉 시: 즉시 다량의 비눗물로 최소 15분간 세척하십시오.</li><li>점막 또는 바늘 상해 노출: 상처를 압박하고 흐르는 물에 씻은 후 안전 책임자에게 보고하여 노출 후 예방 평가를 받으십시오.</li><li>생물학적 위험물질 유출: 해당 구역을 대피시키고 봉쇄한 후 흡수 재료로 덮고 소독 처리를 수행하십시오.</li><li>모든 노출 사건은 등록하고 최소 6개월간 건강 상태를 추적 관찰하십시오.</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 场景3: 重物搬运 -->
+    <div class="scene-card" data-scene="lift">
+        <div class="scene-header">
+            <div class="scene-icon"><i class="fas fa-weight-hanging" style="color:#3a7ca5;"></i></div>
+            <div class="scene-title">重物搬运 <small>중량물 취급</small></div>
+        </div>
+        <div class="scene-desc">
+            <div class="risk-double">
+                <div class="risk-box"><div class="lang-label"><i class="fas fa-flag-china"></i> 中文风险描述</div><p>医疗器械工厂需搬运大型影像设备、铅防护衣箱、高压灭菌罐等重物。不正确操作可能导致肌肉骨骼损伤、跌落砸伤或挤压事故。</p></div>
+                <div class="risk-box"><div class="lang-label"><i class="fas fa-flag-south-korea"></i> 한국어 위험 설명</div><p>의료기기 공장에서는 대형 영상 장비, 납 보호복 상자, 고압 멸균 탱크 등 중량물을 취급해야 합니다. 부적절한 작업은 근골격계 손상, 낙하 충격 또는 압착 사고를 유발할 수 있습니다.</p></div>
+            </div>
+        </div>
+
+        <div class="section-title"><i class="fas fa-clipboard-list"></i> 标准操作流程 (SOP) · 표준 작업 절차</div>
+        <div class="table-wrapper">
+            <table class="sop-table">
+                <thead><tr><th>步骤 / 단계</th><th>中文操作</th><th>한국어 작업 지침</th></tr></thead>
+                <tbody>
+                    <tr><td class="step-num">1</td><td>搬运前评估物品重量，超出单人能力（>15kg）必须使用辅助设备或双人协作。</td><td>취급 전 물체 무게를 평가하고, 개인 능력 초과 시(>15kg) 반드시 보조 장비 또는 2인 협력을 사용하십시오.</td></tr>
+                    <tr><td class="step-num">2</td><td>使用合适的工具：叉车、液压搬运车、升降平台或手推车，并检查设备完好性。</td><td>적절한 도구(지게차, 유압 카트, 리프트 플랫폼 또는 핸드 트럭)를 사용하고 장비의 완전성을 점검하십시오.</td></tr>
+                    <tr><td class="step-num">3</td><td>搬运时保持背部挺直，屈膝下蹲，用腿部力量抬起，避免腰部扭转。</td><td>허리를 곧게 펴고 무릎을 구부려 쪼그린 자세에서 다리 힘으로 들어 올리며 허리 비틀기를 피하십시오.</td></tr>
+                    <tr><td class="step-num">4</td><td>重物移动过程中确保通道畅通、无油污或障碍物，穿戴防砸鞋和安全手套。</td><td>중량물 이동 중 통로가 막히지 않고 기름때나 장애물이 없는지 확인하며, 안전화 및 안전 장갑을 착용하십시오.</td></tr>
+                    <tr><td class="step-num">5</td><td>将负载稳定放置在指定区域，使用捆绑带或三角垫防止滚动/倾倒。</td><td>지정된 구역에 하중을 안정적으로 배치하고, 롤링/전도를 방지하기 위해 묶음 끈이나 삼각 받침을 사용하십시오.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="emergency-section">
+            <div class="emer-title"><i class="fas fa-truck-medical"></i> 应急措施 · 비상 조치</div>
+            <div class="emer-grid">
+                <div class="emer-col"><h4><i class="fas fa-hand-holding-heart"></i> 中文应急措施</h4><ul><li>重物砸伤/挤压肢体：立即停止作业，移开重物（如安全条件下），进行止血和包扎。</li><li>疑似骨折或脊椎损伤：不可随意移动伤者，固定伤处并立即呼叫急救。</li><li>扭伤或拉伤：遵循RICE原则（休息、冰敷、加压、抬高），并上报安全部门。</li><li>事故现场保留证据，分析原因，防止二次事故。</li></ul></div>
+                <div class="emer-col"><h4><i class="fas fa-hand-holding-heart"></i> 한국어 비상 조치</h4><ul><li>중량물 낙하/사지 압착 시: 작업을 즉시 중단하고 안전한 경우 중량물을 제거한 후 지혈 및 붕대를 감습니다.</li><li>골절 또는 척추 손상 의심 시: 부상자를 함부로 움직이지 말고 부위를 고정한 후 즉시 응급처치를 요청하십시오.</li><li>염좌 또는 좌상: RICE 원칙(휴식, 얼음찜질, 압박, 거상)을 따르고 안전 부서에 보고하십시오.</li><li>사고 현장 증거를 보존하고 원인을 분석하여 2차 사고를 방지하십시오.</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 额外附加 : 通用安全术语/警示 -->
+    <div style="background: white; border-radius: 28px; padding: 1.5rem; margin-top: 1rem; border: 1px solid #e2edf2;">
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: space-between;">
+            <div><i class="fas fa-shield-alt" style="color:#1f7a5a;"></i> <strong>安全标识提示 · 안전 표지판</strong><br><span style="font-size:0.85rem;">⚠️ 辐射区域 ☣️ 生物危害 🏋️ 重物当心</span></div>
+            <div><i class="fas fa-phone-alt"></i> <strong>紧急联络 · 비상 연락처</strong><br><span style="font-size:0.85rem;">工厂安全室 공장 안전실 | 应急救援 응급 구조</span></div>
+            <div><i class="fas fa-clinic-medical"></i> <strong>定期培训 · 정기 교육</strong><br><span style="font-size:0.85rem;">每月安全演练 매월 안전 훈련</span></div>
+        </div>
+    </div>
+
     <div class="footer">
-        ⚠️ <span class="lang-zh">本预测基于规则模型，仅供参考，实际安全管理需结合现场评估。</span>
-        <span class="lang-ko" style="display:none;">본 예측은 규칙 기반 모델로 참고용입니다. 실제 안전 관리는 현장 평가와 결합해야 합니다.</span>
+        <i class="far fa-copyright"></i> 医疗器械产业安全指南 – 中韩对照版 | 의료기기 산업 안전 가이드 - 중한 대조 버전<br>
+        본 내용은 현장 안전 교육 참고용이며, 각 공장의 규정에 따라 적용하십시오. 本指南仅供参考，具体操作请遵循企业安全制度。
     </div>
 </div>
-
-<script>
-    // 语言切换逻辑
-    const langButtons = document.querySelectorAll('.lang-btn');
-    const zhElements = document.querySelectorAll('.lang-zh');
-    const koElements = document.querySelectorAll('.lang-ko');
-
-    function setLanguage(lang) {
-        if (lang === 'zh') {
-            zhElements.forEach(el => el.style.display = '');
-            koElements.forEach(el => el.style.display = 'none');
-            document.querySelectorAll('select option.lang-zh').forEach(opt => opt.style.display = '');
-            document.querySelectorAll('select option.lang-ko').forEach(opt => opt.style.display = 'none');
-            // 修正radio/select显示
-            for(let sel of document.querySelectorAll('select')) {
-                let val = sel.value;
-                sel.innerHTML = Array.from(sel.options).map(opt => {
-                    if(opt.classList.contains('lang-zh')) return `<option value="${opt.value}" ${opt.value==val ? 'selected' : ''}>${opt.innerText}</option>`;
-                    return '';
-                }).join('');
-            }
-        } else {
-            zhElements.forEach(el => el.style.display = 'none');
-            koElements.forEach(el => el.style.display = '');
-            document.querySelectorAll('select option.lang-zh').forEach(opt => opt.style.display = 'none');
-            document.querySelectorAll('select option.lang-ko').forEach(opt => opt.style.display = '');
-            for(let sel of document.querySelectorAll('select')) {
-                let val = sel.value;
-                sel.innerHTML = Array.from(sel.options).map(opt => {
-                    if(opt.classList.contains('lang-ko')) return `<option value="${opt.value}" ${opt.value==val ? 'selected' : ''}>${opt.innerText}</option>`;
-                    return '';
-                }).join('');
-            }
-        }
-        langButtons.forEach(btn => {
-            if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
-    }
-
-    langButtons.forEach(btn => {
-        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
-    });
-
-    // 辅助显示实时数字
-    const doseSlider = document.getElementById('doseRate');
-    const doseValSpan = document.getElementById('doseVal');
-    doseSlider.addEventListener('input', () => {
-        doseValSpan.innerText = doseSlider.value;
-        if(document.getElementById('doseVal_ko')) document.getElementById('doseVal_ko').innerText = doseSlider.value;
-    });
-    const weightSlider = document.getElementById('weightKg');
-    const weightSpan = document.getElementById('weightVal');
-    weightSlider.addEventListener('input', () => weightSpan.innerText = weightSlider.value + " kg");
-
-    // 风险预测函数
-    function predictRadiation() {
-        let dose = parseFloat(doseSlider.value);
-        let ppe = parseInt(document.getElementById('radiationPPE').value);
-        let shield = parseInt(document.getElementById('radiationShield').value);
-        // 风险分数 (0~100) 剂量越高越差，PPE shield 越低越差
-        let doseScore = Math.min(100, (dose / 10) * 100); // 10µSv/h => 100分
-        let ppeScore = (3 - ppe) * 33.33;
-        let shieldScore = (3 - shield) * 33.33;
-        let total = (doseScore * 0.5) + (ppeScore * 0.25) + (shieldScore * 0.25);
-        let risk = total;
-        let level = "";
-        let adviceZh = "", adviceKo = "";
-        if (risk >= 60) { level = "🔴 高风险"; adviceZh = "立即停用设备，检查屏蔽完整性，强制全员使用铅衣+警报器，并限制作业时间。"; adviceKo = "즉시 장비 사용 중지, 차폐 무결성 검사, 모든 작업자 납 보호복+경보기 착용 및 작업 시간 제한."; }
-        else if (risk >= 30) { level = "🟡 中等风险"; adviceZh = "优化防护措施，增加个人剂量监测频率，考虑工程控制升级。"; adviceKo = "보호 조치 최적화, 개인 선량 모니터링 빈도 증가, 엔지니어링 제어 업그레이드 고려."; }
-        else { level = "🟢 低风险"; adviceZh = "维持现有防护，定期检测设备联锁，继续培训。"; adviceKo = "현 보호 유지, 정기적 인터록 점검, 교육 지속."; }
-        document.getElementById('radLevelText').innerHTML = `<span class="lang-zh">${level}</span><span class="lang-ko" style="display:none;">${level.replace('高风险','고위험').replace('中等风险','중간 위험').replace('低风险','낮은 위험')}</span>`;
-        document.getElementById('radAdvice').innerHTML = `<span class="lang-zh">💡 ${adviceZh}</span><span class="lang-ko" style="display:none;">💡 ${adviceKo}</span>`;
-        let riskDiv = document.getElementById('radLevelText');
-        riskDiv.className = `risk-level ${risk>=60 ? 'risk-high' : (risk>=30 ? 'risk-medium' : 'risk-low')}`;
-    }
-
-    function predictBio() {
-        let bioLvl = parseInt(document.getElementById('bioLevel').value);
-        let ppe = parseInt(document.getElementById('bioPPE').value);
-        let waste = parseInt(document.getElementById('bioWaste').value);
-        let riskScore = 0;
-        if(bioLvl === 3) riskScore += 50;
-        else if(bioLvl === 2) riskScore += 30;
-        else riskScore += 10;
-        riskScore += (3-ppe)*20;
-        riskScore += (3-waste)*20;
-        let level = "", adviceZh="", adviceKo="";
-        if (riskScore >= 70) { level = "🔴 高风险"; adviceZh = "立即停止操作，升级生物安全柜至II级，强制使用N95+护目镜，并完善灭菌流程。"; adviceKo = "작업 중단, BSC 업그레이드, N95+보안경 의무화, 멸균 절차 개선."; }
-        else if (riskScore >= 40) { level = "🟡 中等风险"; adviceZh = "加强培训，确保每次操作均在BSC内完成，规范废弃物高压灭菌。"; adviceKo = "교육 강화, 모든 작업 BSC 내에서 수행, 폐기물 고압멸균 규정 준수."; }
-        else { level = "🟢 低风险"; adviceZh = "继续保持标准PPE及BSC使用，定期审核生物安全规范。"; adviceKo = "표준 PPE 및 BSC 사용 유지, 정기적 생물안전 감사."; }
-        let resultDiv = document.getElementById('resultBio');
-        resultDiv.querySelector('.risk-level').innerHTML = `<span class="lang-zh">${level}</span><span class="lang-ko" style="display:none;">${level.replace('高风险','고위험').replace('中等风险','중간 위험').replace('低风险','낮은 위험')}</span>`;
-        resultDiv.querySelector('.advice').innerHTML = `<span class="lang-zh">💡 ${adviceZh}</span><span class="lang-ko" style="display:none;">💡 ${adviceKo}</span>`;
-        let rl = resultDiv.querySelector('.risk-level');
-        rl.className = `risk-level ${riskScore>=70 ? 'risk-high' : (riskScore>=40 ? 'risk-medium' : 'risk-low')}`;
-    }
-
-    function predictLift() {
-        let weight = parseFloat(weightSlider.value);
-        let aid = parseInt(document.getElementById('liftingAid').value);
-        let training = parseInt(document.getElementById('liftTraining').value);
-        let weightScore = 0;
-        if(weight > 50) weightScore = 70;
-        else if(weight > 25) weightScore = 40;
-        else weightScore = 15;
-        let aidScore = (3-aid)*25;
-        let trainingScore = (3-training)*20;
-        let total = weightScore*0.5 + aidScore*0.3 + trainingScore*0.2;
-        let level="", adviceZh="", adviceKo="";
-        if(total >= 65) { level = "🔴 高风险"; adviceZh = "立即改用机械搬运，严格执行双人操作，每周进行工效学培训。"; adviceKo = "즉시 기계 취급으로 전환, 2인 작업 규칙 엄수, 매주 인간공학 교육."; }
-        else if(total >= 35) { level = "🟡 中等风险"; adviceZh = "增加辅助设备，推广正确弯腰抬举姿势，设立重量限制标识。"; adviceKo = "보조 장비 추가, 올바른 들어올리기 자세 교육, 중량 제한 표지 부착."; }
-        else { level = "🟢 低风险"; adviceZh = "维持现有良好操作，定期检查搬运工具。"; adviceKo = "현행 우수 작업 유지, 취급 도구 정기 점검."; }
-        let resDiv = document.getElementById('ResultLift');
-        resDiv.querySelector('.risk-level').innerHTML = `<span class="lang-zh">${level}</span><span class="lang-ko" style="display:none;">${level.replace('高风险','고위험').replace('中等风险','중간 위험').replace('低风险','낮은 위험')}</span>`;
-        resDiv.querySelector('.advice').innerHTML = `<span class="lang-zh">💡 ${adviceZh}</span><span class="lang-ko" style="display:none;">💡 ${adviceKo}</span>`;
-        let rl = resDiv.querySelector('.risk-level');
-        rl.className = `risk-level ${total>=65 ? 'risk-high' : (total>=35 ? 'risk-medium' : 'risk-low')}`;
-    }
-
-    // 绑定按钮
-    document.querySelector('[data-scene="radiation"]').addEventListener('click', predictRadiation);
-    document.querySelector('[data-scene="bio"]').addEventListener('click', predictBio);
-    document.querySelector('[data-scene="lift"]').addEventListener('click', predictLift);
-
-    // 初始化事件显示联动
-    setLanguage('zh');
-    // 初始值展示
-    predictRadiation();
-    predictBio();
-    predictLift();
-</script>
 </body>
 </html>
-```
-
